@@ -178,7 +178,9 @@ NTTHERM.UpdateLimbAfflictions = {
 		max = 101,
 		update = function(c, limbaff, i, type)
 			if limbaff[i].strength > 0 then
-				if THERM.GetCharacter(c.character.ID) ~= nil then
+				if THERM.GetCharacter(c.character.ID) ~= nil
+					-- rawr | If the character is a bot with the safety suit config on, do not mess with temperature regardless of suit
+					and not (NTConfig.Get("BotSuitSafteyMode", true) and c.character.IsBot) then
 					local NormalBodyTemp = FetchConfigStats().NormalBodyTemp
 					local HypothermiaLevel = FetchConfigStats().HypothermiaLevel
 					local HyperthermiaLevel = FetchConfigStats().HyperthermiaLevel
