@@ -298,11 +298,14 @@ NTTHERM.UpdateLimbAfflictions = {
 			local MaxWarmingTemp = FetchOtherStats().MaxWarmingTemp
 			-- Warm up skin.
 			if limbaff[i].strength > 0 then
+				-- If the character is a bot with the temp ignore config on, don't change the temperature
+				if not (NTConfig.Get("BotTempIgnoreMode", true) and c.character.IsBot) then
 				limbaff.ntt_temperature.strength = limbaff.ntt_temperature.strength 
 					+ (WarmingAbility
 					/(limbaff.ntt_temperature.strength/MaxWarmingTemp)
 					/WarmthScaling 
 					* NT.Deltatime)
+				end
 				limbaff[i].strength = limbaff[i].strength - 1.7 * NT.Deltatime
 				if type == LimbType.Torso and c.afflictions.internalbleeding.strength > 0 then
 					c.afflictions.internalbleeding.strength = c.afflictions.internalbleeding.strength
@@ -321,11 +324,14 @@ NTTHERM.UpdateLimbAfflictions = {
 			-- over time skin temperature goes up again
 			if limbaff[i].strength > 0 then
 				limbaff[i].strength = limbaff[i].strength - 1.7 * NT.Deltatime
+				-- If the character is a bot with the temp ignore config on, don't change the temperature
+				if not (NTConfig.Get("BotTempIgnoreMode", true) and c.character.IsBot) then
 				limbaff.ntt_temperature.strength = limbaff.ntt_temperature.strength 
 					+ ((CoolingAbility
 					/(MaxCoolingTemp/limbaff.ntt_temperature.strength))
 					* CoolScaling  
 					* NT.Deltatime)
+				end
 			end
 			-- iced effects
 			if limbaff[i].strength > 0 then
@@ -1087,12 +1093,15 @@ NTTHERM.UpdateBloodAfflictions = {
 			if c.afflictions[i].strength > 0 then
 				for index, limb in pairs(FetchOtherStats().LimbsToCheck) do
 					local Chilled = HF.Clamp(HF.GetAfflictionStrengthLimb(c.character, limb, "iced", 1)/50,1,2)
+					-- If the character is a bot with the temp ignore config on, don't change the temperature
+					if not (NTConfig.Get("BotTempIgnoreMode", true) and c.character.IsBot) then
 					HF.AddAfflictionLimb(c.character, "ntt_temperature", limb, 
 						TempIncrease
 						+ (MaxWarmingTemp/LimbStrength)/80 
 						* c.afflictions[i].strength/20 
 						/ Chilled
 						* NT.Deltatime)
+					end
 				end
 				-- Side effect of elevated_core_temperature.
 				if c.afflictions[i].strength > 30 then
