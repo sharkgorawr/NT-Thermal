@@ -19,7 +19,7 @@ Due to the addition of temperature, pressure isn't the only fear of water anymor
 Why is this only a NT addon?
 Simply put, I find NT to be the perfect canidate for a mod as this. Due to the already well thought out and maintained nature of Neurotrauma, adding this was extremely easy to do. I do not plan on ever making this a standalone mod, however, feel more then welcome to do so!
 
-A Trello guide can be found Here![trello.com]
+A Trello guide can be found [here](https://trello.com/b/S152SCKi/nt-thermal)!
 The trello also features a bunch of info regarding compatibility and other stuff. I also spent two whole days suffering while making it. Please read.
 
 Compatibility/Requirements:
@@ -45,7 +45,7 @@ That being said I would like to add more content.
 
 You do not have to ask me to fork, make a translation or edit this mod.
 Feel free to make any contributions if you like!
-The Github Repository can be found here![github.com]
+The Steam workshop upload can be found [here](https://steamcommunity.com/sharedfiles/filedetails/?id=3648890424)!
 
 Patches:
 WARNING: Do not use any of the following patches if you are using Immersive Diving Gear and the same patch you are about to use below.
